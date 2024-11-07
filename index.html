@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wikipedia Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="score-container">
+        <span>Score: <span id="score">0</span></span>
+      </div>
+
+      <div id="welcome-screen">
+        <h1>Wikipedia Game: Guess That Article!</h1>
+        <p>
+          Test your Wikipedia knowledge! Read the article excerpt and guess its
+          title from the options provided.
+        </p>
+        <button id="play-btn" class="btn">Play Now!</button>
+      </div>
+
+      <div id="game-screen" class="hidden">
+        <div class="article-card">
+          <div id="article-content"></div>
+          <div id="options-container"></div>
+        </div>
+        <button id="next-btn" class="btn hidden">Next Article?</button>
+      </div>
+    </div>
+    <script type="module" src="game.js"></script>
+  </body>
+</html>
