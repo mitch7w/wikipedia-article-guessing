@@ -79,14 +79,29 @@ class WikiGame {
             const data = await response.json();
             const pages = data.query.pages;
             const pageId = Object.keys(pages)[0];
-            return pages[pageId].extract;
+            const content = pages[pageId].extract;
+            
+            console.log('Full Wikipedia content:', content);
+            
+            // Remove first sentence here
+            const firstSentenceEnd = content.indexOf('. ') + 2;
+            const contentWithoutFirstSentence = content.substring(firstSentenceEnd);
+            
+            console.log('Content without first sentence:', contentWithoutFirstSentence);
+            return contentWithoutFirstSentence;
         } catch (error) {
             console.error('Error fetching from Wikipedia:', error);
-            return 'Error loading article content. Please try again.';
+            return 'Error loading content. Please try again.';
         }
     }
 
     displayArticle(content) {
+        if (!content) {
+            console.log('No content received');
+            return;
+        }
+        
+        // Simply display the content - sentence removal is already done
         document.getElementById('article-content').innerHTML = `
             <p>${content}</p>
         `;
@@ -148,4 +163,10 @@ class WikiGame {
 }
 
 // Initialize the game
-new WikiGame(); 
+new WikiGame();
+
+// Make sure this is at the end of your game.js file
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Initializing game...'); // Debug log
+    new WikiGame();
+}); 
